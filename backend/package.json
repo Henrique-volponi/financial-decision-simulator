@@ -14,7 +14,8 @@
     "@nestjs/core": "11.1.16",
     "@nestjs/platform-express": "11.1.16",
     "reflect-metadata": "0.2.2",
-    "rxjs": "7.8.1"
+    "rxjs": "7.8.1",
+    "simulation-engine": "file:../simulation-engine"
   },
   "devDependencies": {
     "@nestjs/cli": "11.0.16",
