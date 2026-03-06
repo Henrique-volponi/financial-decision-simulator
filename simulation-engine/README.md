@@ -19,6 +19,7 @@ import {
   simulateMonthlyInvestment,
   simulateLongTermInvestment,
   simulateLoan,
+  simulateBasicLoan,
   adjustForInflation,
   applyInflationSeries,
 } from './dist'
@@ -51,6 +52,12 @@ const loan = simulateLoan({
   extraMonthlyPayment: 200,
 })
 
+const basicLoan = simulateBasicLoan({
+  loanAmount: 300000,
+  interestRate: 0.09,
+  loanYears: 30,
+})
+
 const real = adjustForInflation({ amount: 1000, annualInflationRate: 0.04, years: 3 })
 const series = applyInflationSeries(monthly.monthlyBalances, 0.04)
 ```
@@ -60,7 +67,7 @@ const series = applyInflationSeries(monthly.monthlyBalances, 0.04)
 - **Juros compostos**: `calculateCompoundInterest` calcula saldo final, contribuições totais, juros totais e saldo por período.
 - **Investimento mensal**: `simulateMonthlyInvestment` retorna evolução mensal, total de aportes e juros.
 - **Investimento de longo prazo**: `simulateLongTermInvestment` retorna breakdown anual (saldo, aportes, juros), total investido, juros acumulados e valor final.
-- **Empréstimo**: `simulateLoan` calcula prestação teórica, juros totais e cronograma de amortização mês a mês com pagamento extra opcional.
+- **Empréstimo**: `simulateLoan` calcula prestação teórica, juros totais e cronograma de amortização mês a mês com pagamento extra opcional. `simulateBasicLoan` aceita `loanAmount`, `interestRate`, `loanYears` e retorna pagamento mensal, cronograma, juros totais e custo total.
 - **Inflação**: `adjustForInflation` devolve valor real, `applyInflationSeries` ajusta uma série mensal.
 
 ## Scripts
