@@ -1,0 +1,16 @@
+{
+  "name": "simulation-engine",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Core financial calculation modules for the simulator",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "lint": "echo \"Add linting for simulation-engine\"",
+    "test": "echo \"Add tests for simulation-engine\""
+  },
+  "devDependencies": {
+    "typescript": "5.4.5"
+  }
+}

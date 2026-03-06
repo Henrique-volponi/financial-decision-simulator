@@ -1,0 +1,14 @@
+{
+  "name": "financial-decision-simulator",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Monorepo for a financial decision simulator (frontend, backend, simulation engine, docs)",
+  "workspaces": [
+    "frontend",
+    "backend",
+    "simulation-engine"
+  ],
+  "scripts": {
+    "lint": "echo \"Add workspace-level linting or run per-package lint scripts\""
+  }
+}
