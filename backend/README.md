@@ -1,6 +1,6 @@
 # Backend (NestJS API)
 
-API do Financial Decision Simulator com health check e placeholder de simulação.
+API do Financial Decision Simulator com health check e endpoints de simulação usando o `simulation-engine`.
 
 ## Como rodar em desenvolvimento
 
@@ -20,10 +20,16 @@ npm run start:dev
 ## Endpoints atuais
 
 - `GET /health` — status e timestamp.
-- `GET /simulation` — placeholder do módulo de simulação (deve ser substituído quando integrar com o engine real).
+- `POST /simulate/investment` — simula investimento de longo prazo (`initialAmount`, `monthlyContribution`, `yearlyReturnRate`, `investmentYears`).
+- `POST /simulate/loan` — simula financiamento (`loanAmount`, `interestRate`, `loanYears`).
+
+## Pré-requisito
+
+O pacote `simulation-engine` deve estar instalado/buildado no monorepo (`npm install` na raiz e `npm run build` em `simulation-engine`) para execução em desenvolvimento.
+
+> Nota: devido a um erro do npm com `workspace:*` nesta máquina, o link está configurado como `file:../simulation-engine`. Quando o npm for atualizado/suportar corretamente workspaces, podemos voltar para `workspace:*`.
 
 ## Próximos passos
 
-- Definir contratos de API e DTOs.
-- Integrar com o `simulation-engine` e expor simulações reais.
-- Adicionar validação, autenticação/autorização e observabilidade.
+- Adicionar DTOs com validação (class-validator) e documentação (OpenAPI/Swagger).
+- Autenticação/autorização e observabilidade.
