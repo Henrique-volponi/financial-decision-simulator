@@ -17,6 +17,7 @@ cd simulation-engine && npm run build
 import {
   calculateCompoundInterest,
   simulateMonthlyInvestment,
+  simulateLongTermInvestment,
   simulateLoan,
   adjustForInflation,
   applyInflationSeries,
@@ -36,6 +37,13 @@ const monthly = simulateMonthlyInvestment({
   months: 120,
 })
 
+const longTerm = simulateLongTermInvestment({
+  initialAmount: 5000,
+  monthlyContribution: 500,
+  yearlyReturnRate: 0.08,
+  investmentYears: 30,
+})
+
 const loan = simulateLoan({
   principal: 200000,
   annualRate: 0.1,
@@ -51,6 +59,7 @@ const series = applyInflationSeries(monthly.monthlyBalances, 0.04)
 
 - **Juros compostos**: `calculateCompoundInterest` calcula saldo final, contribuições totais, juros totais e saldo por período.
 - **Investimento mensal**: `simulateMonthlyInvestment` retorna evolução mensal, total de aportes e juros.
+- **Investimento de longo prazo**: `simulateLongTermInvestment` retorna breakdown anual (saldo, aportes, juros), total investido, juros acumulados e valor final.
 - **Empréstimo**: `simulateLoan` calcula prestação teórica, juros totais e cronograma de amortização mês a mês com pagamento extra opcional.
 - **Inflação**: `adjustForInflation` devolve valor real, `applyInflationSeries` ajusta uma série mensal.
 
