@@ -1,12 +1,17 @@
-import { Controller, Get } from '@nestjs/common'
-import { SimulationService } from './simulation.service'
+import { Body, Controller, Post } from '@nestjs/common'
+import { SimulationService, InvestmentPayload, LoanPayload } from './simulation.service'
 
-@Controller('simulation')
+@Controller('simulate')
 export class SimulationController {
   constructor(private readonly simulationService: SimulationService) {}
 
-  @Get()
-  getPlaceholder() {
-    return this.simulationService.getPlaceholder()
+  @Post('investment')
+  simulateInvestment(@Body() payload: InvestmentPayload) {
+    return this.simulationService.simulateInvestment(payload)
+  }
+
+  @Post('loan')
+  simulateLoan(@Body() payload: LoanPayload) {
+    return this.simulationService.simulateLoan(payload)
   }
 }
