@@ -65,3 +65,32 @@ export function simulateLoan(input: LoanSimulationInput): LoanSimulationResult {
     installments,
   }
 }
+
+export type BasicLoanInput = {
+  loanAmount: number
+  interestRate: number // annual, e.g. 0.09 for 9%
+  loanYears: number
+}
+
+export type BasicLoanResult = {
+  monthlyPayment: number
+  schedule: LoanInstallment[]
+  totalInterestPaid: number
+  totalCost: number
+}
+
+export function simulateBasicLoan(input: BasicLoanInput): BasicLoanResult {
+  const termMonths = Math.floor(input.loanYears * 12)
+  const result = simulateLoan({
+    principal: input.loanAmount,
+    annualRate: input.interestRate,
+    termMonths,
+  })
+
+  return {
+    monthlyPayment: result.scheduledPayment,
+    schedule: result.installments,
+    totalInterestPaid: result.totalInterest,
+    totalCost: result.totalPaid,
+  }
+}
