@@ -1,35 +1,15 @@
 import { Injectable } from '@nestjs/common'
 import { simulateLongTermInvestment, simulateBasicLoan } from 'simulation-engine'
-
-export type InvestmentPayload = {
-  initialAmount: number
-  monthlyContribution: number
-  yearlyReturnRate: number
-  investmentYears: number
-}
-
-export type LoanPayload = {
-  loanAmount: number
-  interestRate: number
-  loanYears: number
-}
+import { InvestmentDto } from './dto/investment.dto'
+import { LoanDto } from './dto/loan.dto'
 
 @Injectable()
 export class SimulationService {
-  simulateInvestment(payload: InvestmentPayload) {
-    return simulateLongTermInvestment({
-      initialAmount: payload.initialAmount,
-      monthlyContribution: payload.monthlyContribution,
-      yearlyReturnRate: payload.yearlyReturnRate,
-      investmentYears: payload.investmentYears,
-    })
+  simulateInvestment(payload: InvestmentDto) {
+    return simulateLongTermInvestment(payload)
   }
 
-  simulateLoan(payload: LoanPayload) {
-    return simulateBasicLoan({
-      loanAmount: payload.loanAmount,
-      interestRate: payload.interestRate,
-      loanYears: payload.loanYears,
-    })
+  simulateLoan(payload: LoanDto) {
+    return simulateBasicLoan(payload)
   }
 }
